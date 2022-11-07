@@ -1,0 +1,40 @@
+body{
+    background-color: red;
+    margin: 0px;
+}
+
+#buttonDiv{
+    /*transform: translate(-50%,-50%);*/
+    position: absolute;
+    width: 100%;
+    height:10%;
+    /*left: 50%;
+    top:10%;
+    transform:translate(0,-50%)*/
+    text-align: center;
+}
+
+#sim{
+    height: 1vh;
+    width: 1vh;
+}
+
+#myCanvas{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}
+
+#makeBall{
+    position: absolute;
+    left: 50%;
+}
+
+.ball{
+    position: absolute;
+    width: 10px;
+    height:10px;
+    border-radius: 50%;
+    background-color: aqua;
+}
