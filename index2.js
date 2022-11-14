@@ -2,9 +2,11 @@ let canvas = document.getElementById("myCanvas");
 let context = canvas.getContext("2d");
 let resetBtn  = document.getElementById("reset");
 let StartStop = document.getElementById("StartStop");
+let testingBTN = document.getElementById("testing")
+let sideBarUpdateButtons = document.getElementById("sideButtonDiv")
 
 let g = 0.05;
-let fac = 0.8;
+let fac = 1.1;
 let radius = 20;
 let color = "#0000ff";
 let running = false
@@ -13,7 +15,7 @@ let running = false
 
 let x = 50;
 let y = 50;
-let vx = 2;
+let vx = 0;
 let vy = 0;
 
 window.onload = init;
@@ -22,13 +24,36 @@ function init(){
     setInterval(update, 1000/60);
 }
 
-class Balls{
-    constructor(x,y,vx,vy){
+class sphere{
+    constructor(x,y,radius, ax, ay, m,vx=0,vy=0){
         this.x = x
         this.y = y
         this.vx = vx
         this.vy = vy
     }
+}
+
+function sidebarUpdate(){
+    let updateThing = sideBarUpdateButtons.getElementsByTagName("button")
+        for (let i = 0; i < updateThing.length; i++){
+            if (i === 0){
+                updateThing[i].innerHTML = x
+            }if (i === 1){
+                updateThing[i].innerHTML = y
+            }if (i === 2){
+                updateThing[i].innerHTML = vx
+            }if (i === 3){
+                updateThing[i].innerHTML = vy
+            }if (i === 4){
+                updateThing[i].innerHTML = radius
+            }if (i === 5){
+                updateThing[i].innerHTML = fac
+            }if (i === 6){
+                updateThing[i].innerHTML = g
+            }
+
+        }
+
 }
 
 
@@ -46,6 +71,10 @@ function update(){
             console.log(`YCord is: ${y}`)
             console.log(`XCord is: ${x}`)
         }
+        if (y < radius){
+            y = radius
+            vy*= -fac;
+        }
         if (x > canvas.width - radius){
             x = canvas.width - radius
             vx *= -fac;
@@ -61,7 +90,8 @@ function update(){
             console.log(`XCord is: ${y}`)
             console.log(`XCord is: ${x}`)   
         }
-        drawBall();
+        drawBall()
+        sidebarUpdate();
     }
 }
 
@@ -99,3 +129,4 @@ function changeButton(){
 
 resetBtn.onclick = resetBall
 StartStop.onclick = changeButton
+testingBTN.onclick = sidebarUpdate
